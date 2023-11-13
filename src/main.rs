@@ -8,13 +8,13 @@ use std::io::Write;
 struct Cli {
 	path: std::path::PathBuf,
 	#[clap(long, short)]
-    fix: bool,
+	fix: bool,
 }
 
 fn append_newline(path: &std::path::Path) -> std::io::Result<()> {
-    let mut file = OpenOptions::new().append(true).open(path)?;
-    writeln!(file)?;
-    Ok(())
+	let mut file = OpenOptions::new().append(true).open(path)?;
+	writeln!(file)?;
+	Ok(())
 }
 
 fn main() {
@@ -30,7 +30,10 @@ fn main() {
 								println!("{}", entry.path().display());
 								if args.fix {
 									if let Err(_err) = append_newline(entry.path()) {
-										eprintln!("Something went wrong while fixing file '{}'.", entry.path().display());
+										eprintln!(
+											"Something went wrong while fixing file '{}'.",
+											entry.path().display()
+										);
 									}
 								}
 							}
@@ -38,7 +41,10 @@ fn main() {
 					}
 				}
 				Err(_err) => {
-					eprintln!("Something went wrong while reading file '{}'.", entry.path().display());
+					eprintln!(
+						"Something went wrong while reading file '{}'.",
+						entry.path().display()
+					);
 				}
 			},
 			Err(_err) => {
