@@ -1,4 +1,5 @@
 use clap::Parser;
+use ignore::overrides::OverrideBuilder;
 use ignore::WalkBuilder;
 use std::fs::OpenOptions;
 use std::io::Write;
@@ -20,7 +21,16 @@ fn append_newline(path: &std::path::Path) -> std::io::Result<()> {
 fn main() {
 	let args = Cli::parse();
 
-	for result in WalkBuilder::new(args.path.clone()).hidden(false).build() {
+	let mut overrides = OverrideBuilder::new(args.path.clone());
+	overrides.add("!.git/").expect("Invalid exclude pattern");
+
+
+	let mut builder = WalkBuilder::new(args.path.clone());
+	builder.hidden(false).overrides(overrides
+		.build()
+		.expect("WalkBuilder construction error"));
+
+	for result in builder.build() {
 		match result {
 			Ok(entry) => match std::fs::metadata(entry.path()) {
 				Ok(metadata) => {
