@@ -24,11 +24,10 @@ fn main() {
 	let mut overrides = OverrideBuilder::new(args.path.clone());
 	overrides.add("!.git/").expect("Invalid exclude pattern");
 
-
 	let mut builder = WalkBuilder::new(args.path.clone());
-	builder.hidden(false).overrides(overrides
-		.build()
-		.expect("WalkBuilder construction error"));
+	builder
+		.hidden(false)
+		.overrides(overrides.build().expect("WalkBuilder construction error"));
 
 	for result in builder.build() {
 		match result {
