@@ -5,6 +5,7 @@ edition = "2021"
 
 [dependencies]
 clap = { version = "4.0", features = ["derive"] }
+color-eyre = { version="0.6.2", default-features = false }
 ignore = "0.4.20"
 
 [dev-dependencies]
