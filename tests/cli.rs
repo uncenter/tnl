@@ -1,4 +1,5 @@
 use assert_cmd::prelude::*;
+use assert_fs::prelude::*;
 use predicates::prelude::*;
 use std::process::Command;
 
@@ -13,8 +14,6 @@ fn file_doesnt_exist() -> Result<(), Box<dyn std::error::Error>> {
 
 	Ok(())
 }
-
-use assert_fs::prelude::*;
 
 #[test]
 fn file_not_ends_with_newline() -> Result<(), Box<dyn std::error::Error>> {
