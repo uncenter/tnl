@@ -9,7 +9,7 @@ fn file_doesnt_exist() -> Result<(), Box<dyn std::error::Error>> {
 	cmd.arg("file/does/not/exist");
 	cmd.assert()
 		.failure()
-		.stderr(predicate::str::contains("Could not read file or directory"));
+		.stderr(predicate::str::contains("could not read file or directory"));
 
 	Ok(())
 }
