@@ -30,21 +30,17 @@ fn main() {
 		.overrides(overrides.build().expect("WalkBuilder construction error"));
 
 	for result in builder.build() {
-		let entry = result.expect(&format!(
-			"read file or directory '{}'",
-			args.path.to_string_lossy()
-		));
-		let metadata = fs::metadata(entry.path()).expect(&format!(
-			"read file or directory '{}'",
-			entry.path().display()
-		));
+		let entry = result.unwrap_or_else(|_| panic!("read file or directory '{}'",
+			args.path.to_string_lossy()));
+		let metadata = fs::metadata(entry.path()).unwrap_or_else(|_| panic!("read file or directory '{}'",
+			entry.path().display()));
 		if !metadata.is_dir() {
 			if let Ok(contents) = fs::read_to_string(entry.path()) {
 				if !contents.ends_with('\n') {
 					println!("{}", entry.path().display());
 					if args.fix {
 						append_newline(entry.path())
-							.expect(&format!("fix file '{}'", entry.path().display()));
+							.unwrap_or_else(|_| panic!("fix file '{}'", entry.path().display()));
 					}
 				}
 			}
