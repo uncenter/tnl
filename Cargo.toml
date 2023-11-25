@@ -1,6 +1,14 @@
 [package]
 name = "tnl"
 version = "0.1.0"
+authors = ["uncenter <uncenter@uncenter.dev>"]
+license = "MIT"
+description = "Find files with missing trailing newlines."
+readme = "README.md"
+homepage = "https://github.com/uncenter/tnl"
+repository = "https://github.com/uncenter/tnl"
+keywords = ["cli"]
+categories = ["command-line-utilities"]
 edition = "2021"
 
 [dependencies]

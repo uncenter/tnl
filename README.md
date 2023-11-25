@@ -1,13 +1,13 @@
 # tnl
 
-Check for files not ending in newlines. My first Rust project!
+Find files with missing trailing newlines. My first Rust project!
 
 ```
 warning: missing "blazingly fast" in description
   --> README.md:3:0
    |
-3  | ...                   Check for files not ending in newlines. My first Rust project!
-   |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ help: try: `Blazingly fast tool to check for files not ending in newlines. My first Rust project!`
+3  | ...                   Find files with missing trailing newlines. My first Rust project!
+   |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ help: try: `Blazingly fast tool to find files with missing trailing newlines. My first Rust project!`
    |
 ```
 
