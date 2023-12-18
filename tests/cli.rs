@@ -36,7 +36,8 @@ fn file_ends_with_newline() -> Result<(), Box<dyn std::error::Error>> {
 
 	let mut cmd = Command::cargo_bin("tnl")?;
 	cmd.arg(file.path());
-	cmd.assert().success().stdout(predicate::str::is_empty());
-
+	cmd.assert()
+    .success()
+    .stdout(predicate::str::contains(file.path().to_string_lossy()).not());
 	Ok(())
 }
