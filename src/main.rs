@@ -74,9 +74,12 @@ fn main() -> Result<()> {
 			"Checked {} file{}{}.",
 			files_checked,
 			if files_checked == 1 { "" } else { "s" },
-			if args.fix { format!(", fixed {}", files_fixed) } else { "".to_string() },
+			if args.fix {
+				format!(", fixed {}", files_fixed)
+			} else {
+				"".to_string()
+			},
 		);
-
 	};
 
 	Ok(())
